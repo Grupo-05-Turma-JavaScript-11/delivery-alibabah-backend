@@ -47,7 +47,7 @@ export class MenuController{
         return this.menuService.delete(id)
     }
 
-    @Get("recomendacoes")
+    @Get("/recomendacoes")
     recomendarSaudaveis() {
     return this.menuService.recomendarSaudaveis()
     }
