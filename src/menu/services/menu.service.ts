@@ -13,11 +13,14 @@ export class MenuService{
     ){ }
 
     async findAll(): Promise<Menu[]> {
-        return await this.menuRepository.find();
+        return await this.menuRepository.find({ relations: { usuario: true } });
     }
 
     async findById(id: number): Promise<Menu> {
-        let prato = await this.menuRepository.findOne({where: {id}});
+        let prato = await this.menuRepository.findOne({
+            where: { id }, 
+            relations: {usuario: true} 
+        });
 
         if(!prato){
             throw new HttpException("Prato não encontrado!", HttpStatus.NOT_FOUND);
@@ -27,7 +30,10 @@ export class MenuService{
     }
 
     async findByName(nome: string): Promise<Menu[]> {
-        return await this.menuRepository.find({ where: { nome: ILike(`%${nome}%`) } });
+        return await this.menuRepository.find({ 
+            where: { nome: ILike(`%${nome}%`) },
+            relations: { usuario: true } 
+        });
     }
 
     async create(prato: Menu): Promise<Menu> {

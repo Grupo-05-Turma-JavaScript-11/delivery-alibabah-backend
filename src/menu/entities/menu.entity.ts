@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsNumber, IsPositive, MaxLength } from 'class-validator';  
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';  
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';  
   
 @Entity({ name: "tb_menu" })  
 export class Menu {  
@@ -22,5 +22,11 @@ export class Menu {
   @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })  
   preco: number;  
 
-  
+/*     @ManyToOne(() => Categoria, (categoria) => categoria.postagem, {
+        onDelete: "CASCADE"
+    })
+    categoria: Categoria; */ 
+
+    @ManyToMany(() => Usuario, (user) => user.id) 
+    usuario: Usuario;
 }  
