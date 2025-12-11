@@ -21,4 +21,6 @@ export class Menu {
   @IsPositive({ message: "O preço deve ser um valor positivo." })  
   @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })  
   preco: number;  
+
+  
 }  
