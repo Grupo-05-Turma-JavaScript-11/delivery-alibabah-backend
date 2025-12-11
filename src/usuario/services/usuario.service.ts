@@ -13,11 +13,18 @@ export class UsuarioService {
     ) { }
 //procurar todos os usuarios
     async findAll(): Promise<Usuario[]> {
-        return await this.usuarioRepository.find();
+        return await this.usuarioRepository.find({
+            relations: {
+                menu: true
+            }
+        });
     }
 //procurar usuario por id
     async findById(id: number): Promise<Usuario> {
-        let usuario = await this.usuarioRepository.findOne({where: {id}});
+        let usuario = await this.usuarioRepository.findOne({where: {id}}),
+        relations: {
+            menu: true
+        };
 
         if (!usuario)
             throw new HttpException('Usuario não encontrado!', HttpStatus.NOT_FOUND);
@@ -29,6 +36,9 @@ export class UsuarioService {
         return await this.usuarioRepository.find({
             where:{
                 nome: ILike(`%${nome}%`)
+            },
+            relations: {
+                menu: true
             }
         })
     }

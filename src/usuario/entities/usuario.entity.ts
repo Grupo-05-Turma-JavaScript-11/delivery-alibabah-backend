@@ -1,6 +1,6 @@
 
 import { IsNotEmpty } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 
 
@@ -28,6 +28,8 @@ export class Usuario{
     @IsNotEmpty()
     @Column({ length: 70, nullable: false })
     senha: string;
+
+    @OneToMany(() => menu, (menu) => menu.usuario)
 }
 
    
