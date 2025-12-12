@@ -2,6 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Menu } from './menu/entities/menu.entity';
 import { MenuModule } from './menu/menu.module';
+import { Usuario } from './usuario/entities/usuario.entity';
+import { Categoria } from './categorias/entities/categoria.entity';
+import { UsuarioModule } from './usuario/usuario.module';
+import { CategoriasModule } from './categorias/categorias.module';
 
 
 @Module({
@@ -13,10 +17,12 @@ import { MenuModule } from './menu/menu.module';
       username: 'root',
       password: 'root',
       database: 'db_alibabah',
-      entities: [Menu],
+      entities: [Menu, Usuario, Categoria],
       synchronize: true,
     }), 
     MenuModule,
+    UsuarioModule,
+    CategoriasModule
   ],
   controllers: [],
   providers: [],

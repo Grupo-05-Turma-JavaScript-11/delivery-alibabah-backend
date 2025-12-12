@@ -1,6 +1,7 @@
 
 import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Menu } from '../../menu/entities/menu.entity';
 
 
 
@@ -29,7 +30,8 @@ export class Usuario{
     @Column({ length: 70, nullable: false })
     senha: string;
 
-    @OneToMany(() => menu, (menu) => menu.usuario)
+    @OneToMany(() => Menu, (menu) => menu.usuario)
+    menu: Menu[];
 }
 
    
