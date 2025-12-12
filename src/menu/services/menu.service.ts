@@ -59,4 +59,23 @@ export class MenuService{
         
         return await this.menuRepository.delete(id);
     }
+
+    async recomendarSaudaveis() {
+    const pratos = await this.menuRepository.find();
+
+    const palavrasChave = [
+        "natural", "integral", "proteína", "fibras", 
+        "orgânico", "vegano", "vegetariano", "saudável"
+    ]
+
+    return pratos.filter(p => {
+        const descricaoSaudavel = palavrasChave.some(pc =>
+        p.descricao.toLowerCase().includes(pc)
+        )
+
+        const poucasCalorias = p.calorias <= 300;
+
+        return descricaoSaudavel || poucasCalorias;
+    })
+    }
 }

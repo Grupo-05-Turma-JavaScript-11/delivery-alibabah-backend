@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsPositive, MaxLength } from 'class-validator';  
+import { IsInt, IsNotEmpty, IsNumber, IsPositive, MaxLength } from 'class-validator';  
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';  
   
 @Entity({ name: "tb_menu" })  
@@ -20,7 +20,12 @@ export class Menu {
   @IsNumber({}, { message: "O preço deve ser um número." })  
   @IsPositive({ message: "O preço deve ser um valor positivo." })  
   @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })  
-  preco: number;  
+  preco: number;
+  
+  @IsNotEmpty({ message: "As calorias não podem estar vazias." })
+  @IsInt({ message: "As calorias devem ser um número inteiro." })  
+  @Column({ nullable: false })  
+  calorias: number;
 
 /*     @ManyToOne(() => Categoria, (categoria) => categoria.postagem, {
         onDelete: "CASCADE"
