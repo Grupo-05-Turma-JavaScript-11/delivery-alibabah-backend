@@ -30,7 +30,7 @@ export class Usuario{
     @Column({ length: 70, nullable: false })
     senha: string;
 
-    @OneToMany(() => Menu, (menu) => menu.usuario.id)
+    @OneToMany(() => Menu, (menu) => menu.usuario)
     menu: Menu[];
 }
 
