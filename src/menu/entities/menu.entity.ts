@@ -1,6 +1,7 @@
 import { IsInt, IsNotEmpty, IsNumber, IsPositive, MaxLength } from 'class-validator';  
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';  
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';  
 import { Usuario } from '../../usuario/entities/usuario.entity';
+import { Categoria } from '../../categorias/entities/categoria.entity';
   
 @Entity({ name: "tb_menu" })  
 export class Menu {  
@@ -28,11 +29,11 @@ export class Menu {
   @Column({ nullable: false })  
   calorias: number;
 
-/*     @ManyToOne(() => Categoria, (categoria) => categoria.postagem, {
+  @ManyToOne(() => Categoria, (categoria) => categoria.pratos, {
         onDelete: "CASCADE"
-    })
-    categoria: Categoria; */ 
+  })
+  categoria: Categoria;
 
-    @ManyToMany(() => Usuario, (user) => user.id) 
-    usuario: Usuario;
-}  
+  @ManyToOne(() => Usuario, (user) => user.menu) 
+  usuario: Usuario;
+}

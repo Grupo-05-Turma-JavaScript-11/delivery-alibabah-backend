@@ -13,13 +13,13 @@ export class MenuService{
     ){ }
 
     async findAll(): Promise<Menu[]> {
-        return await this.menuRepository.find({ relations: { usuario: true } });
+        return await this.menuRepository.find({ relations: { usuario: true, categoria: true } });
     }
 
     async findById(id: number): Promise<Menu> {
         let prato = await this.menuRepository.findOne({
             where: { id }, 
-            relations: {usuario: true} 
+            relations: {usuario: true, categoria: true } 
         });
 
         if(!prato){
@@ -32,7 +32,7 @@ export class MenuService{
     async findByName(nome: string): Promise<Menu[]> {
         return await this.menuRepository.find({ 
             where: { nome: ILike(`%${nome}%`) },
-            relations: { usuario: true } 
+            relations: { usuario: true, categoria: true } 
         });
     }
 
@@ -73,9 +73,9 @@ export class MenuService{
         p.descricao.toLowerCase().includes(pc)
         )
 
-        const poucasCalorias = p.calorias <= 300;
+        // const poucasCalorias = p.calorias <= 300;
 
-        return descricaoSaudavel || poucasCalorias;
+         return descricaoSaudavel
     })
     }
 }

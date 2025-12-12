@@ -1,11 +1,9 @@
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
-
 import { Categoria } from '../entities/categoria.entity';
 import { CreateCategoriaDto } from '../dto/create-categoria.dto';
 import { UpdateCategoriaDto } from '../dto/update-categoria.dto';
-
 
 
 @Injectable()   // marca a classe como injetável para o NestJS
@@ -34,7 +32,7 @@ export class CategoriasService {    // declara a classe de serviço responsável
     // FIND ALL
     async findAll(): Promise<Categoria[]> {     // retorna uma Promise contendo um array de categorias 
         return await this.categoriaRepository.find({    // busca todos os registros da tabela 'Categoria' 
-            relations: ['produtos'],    // carrega, também, os produtos relacionados à categoria
+            relations: {pratos: true},   
         });
     }
 
@@ -42,7 +40,7 @@ export class CategoriasService {    // declara a classe de serviço responsável
     async findOne(id: number): Promise<Categoria> {     // busca uma categoria por um ID único e retorna uma Promise 
         const categoria = await this.categoriaRepository.findOne({    // busca no banco a categoria com o ID informado
             where: { id },
-            relations: ['produtos'],    // retorna, também, a lista de produtos relacionados à categoria
+            relations: {pratos: true},
         });
 
         if (!categoria) {   // verifica se existe a categoria
@@ -57,7 +55,8 @@ export class CategoriasService {    // declara a classe de serviço responsável
         return await this.categoriaRepository.find({    // antes de retornar, aguarda a verificação em 'where'
             where: {
                 nome: ILike(`%${nome}%`)
-            }
+            },
+            relations: {pratos: true},
         })
     }
 
