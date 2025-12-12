@@ -73,9 +73,9 @@ export class MenuService{
         p.descricao.toLowerCase().includes(pc)
         )
 
-        // const poucasCalorias = p.calorias <= 300;
+        const poucasCalorias = p.calorias <= 300;
 
-         return descricaoSaudavel
+        return descricaoSaudavel || poucasCalorias;
     })
     }
 }
