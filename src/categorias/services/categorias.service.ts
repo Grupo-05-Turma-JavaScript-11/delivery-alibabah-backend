@@ -32,7 +32,7 @@ export class CategoriasService {    // declara a classe de serviço responsável
     // FIND ALL
     async findAll(): Promise<Categoria[]> {     // retorna uma Promise contendo um array de categorias 
         return await this.categoriaRepository.find({    // busca todos os registros da tabela 'Categoria' 
-            relations: {pratos: true},   
+            relations: {menu: true},   
         });
     }
 
@@ -40,7 +40,7 @@ export class CategoriasService {    // declara a classe de serviço responsável
     async findOne(id: number): Promise<Categoria> {     // busca uma categoria por um ID único e retorna uma Promise 
         const categoria = await this.categoriaRepository.findOne({    // busca no banco a categoria com o ID informado
             where: { id },
-            relations: {pratos: true},
+            relations: {menu: true},
         });
 
         if (!categoria) {   // verifica se existe a categoria
@@ -56,7 +56,7 @@ export class CategoriasService {    // declara a classe de serviço responsável
             where: {
                 nome: ILike(`%${nome}%`)
             },
-            relations: {pratos: true},
+            relations: {menu: true},
         })
     }
 

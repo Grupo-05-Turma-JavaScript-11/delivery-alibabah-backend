@@ -17,6 +17,6 @@ export class Categoria {
     @Column({ type: 'varchar', length: 255, nullable: false })   // coluna 'descricao' da categoria, armazenando texto com limite de 100 caracteres, e não pode ser nulo
     descricao: string;
 
-    @OneToMany(() => Menu, (pratos) => pratos.categoria)
-    pratos: Menu[];
+    @OneToMany(() => Menu, (prato) => prato.categoria)
+    menu: Menu[];
 }

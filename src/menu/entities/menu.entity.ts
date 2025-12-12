@@ -29,7 +29,7 @@ export class Menu {
   @Column({ nullable: false })  
   calorias: number;
 
-  @ManyToOne(() => Categoria, (categoria) => categoria.pratos, {
+  @ManyToOne(() => Categoria, (categoria) => categoria.menu, {
         onDelete: "CASCADE"
   })
   categoria: Categoria;
