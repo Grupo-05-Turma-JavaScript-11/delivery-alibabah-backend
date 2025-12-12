@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Menu } from './menu/entities/menu.entity';
+import { MenuModule } from './menu/menu.module';
 
 
 @Module({
@@ -11,10 +13,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'root',
       database: 'db_alibabah',
-      entities: [],
+      entities: [Menu],
       synchronize: true,
     }), 
-    
+    MenuModule,
   ],
   controllers: [],
   providers: [],
