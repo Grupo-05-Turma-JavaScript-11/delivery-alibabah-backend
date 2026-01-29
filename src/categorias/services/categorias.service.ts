@@ -15,17 +15,16 @@ export class CategoriasService {    // declara a classe de serviço responsável
     ) { }
 
     // CREATE
-    async create(dto: CreateCategoriaDto): Promise<Categoria> {
+    async create(categoria: Categoria): Promise<Categoria> {
 
         const categoriaExistente = await this.categoriaRepository.findOne({
-            where: { nome: dto.nome },
+            where: { nome: categoria.nome },
         });
 
         if (categoriaExistente) {
             
             throw new HttpException('Já existe uma categoria com esse nome!', HttpStatus.BAD_REQUEST);
         }
-        const categoria = this.categoriaRepository.create(dto);
         return this.categoriaRepository.save(categoria);
     }
 

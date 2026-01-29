@@ -13,8 +13,8 @@ export class CategoriasController {
     // POST /categorias -> cria uma nova categoria
     @Post()
     @HttpCode(HttpStatus.CREATED)   // define o status de resposta como 201 (CREATED)
-    create(@Body() dto: CreateCategoriaDto): Promise<Categoria> {  
-        return this.categoriasService.create(dto);
+    create(@Body() categoria: Categoria): Promise<Categoria> {  
+        return this.categoriasService.create(categoria);
     }
 
     // GET /categorias -> retorna todas as categorias
