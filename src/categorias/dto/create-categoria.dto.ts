@@ -11,3 +11,5 @@ export class CreateCategoriaDto {
   @MaxLength(255)
   descricao: string; // descrição da categoria
 }
+
+
