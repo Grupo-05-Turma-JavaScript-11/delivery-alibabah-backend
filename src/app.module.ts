@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MenuModule } from './menu/menu.module';
 import { UsuarioModule } from './usuario/usuario.module';
@@ -13,9 +13,9 @@ import { ProdService } from './data/services/prod.service';
       useClass: ProdService,
       imports: [ConfigModule],
     }),
-    MenuModule,
-    UsuarioModule,
-    CategoriasModule
+  forwardRef(() => MenuModule),
+  forwardRef(() => UsuarioModule),
+  forwardRef(() => CategoriasModule),
   ],
   controllers: [],
   providers: [],
