@@ -1,7 +1,5 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param, ParseIntPipe, HttpCode, HttpStatus, Put } from '@nestjs/common';
 import { CategoriasService } from '../services/categorias.service';
-import { CreateCategoriaDto } from '../dto/create-categoria.dto';
-import { UpdateCategoriaDto } from '../dto/update-categoria.dto';
 import { Categoria } from '../entities/categoria.entity';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -42,8 +40,8 @@ export class CategoriasController {
     @HttpCode(HttpStatus.OK)
     update(
         @Param('id', ParseIntPipe) id: number,
-        @Body() dto: UpdateCategoriaDto): Promise<Categoria> {
-        return this.categoriasService.update(id, dto);
+        @Body() categoria: Categoria): Promise<Categoria> {
+        return this.categoriasService.update(categoria);
     }
 
     // DELETE /categorias/:id -> deleta uma categoria pelo ID

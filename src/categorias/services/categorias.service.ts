@@ -2,8 +2,7 @@ import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestj
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
 import { Categoria } from '../entities/categoria.entity';
-import { CreateCategoriaDto } from '../dto/create-categoria.dto';
-import { UpdateCategoriaDto } from '../dto/update-categoria.dto';
+
 
 
 @Injectable()   // marca a classe como injetável para o NestJS
@@ -60,10 +59,10 @@ export class CategoriasService {    // declara a classe de serviço responsável
     }
 
     //  UPDATE
-    async update(id: number, dto: UpdateCategoriaDto): Promise<Categoria> {
-        const categoria = await this.findOne(id);
+    async update(categoria: Categoria): Promise<Categoria> {
+        await this.findOne(categoria.id);
 
-        Object.assign(categoria, dto);
+        Object.assign(categoria);
 
         return await this.categoriaRepository.save(categoria);
     }
