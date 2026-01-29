@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsString} from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { Menu } from '../../menu/entities/menu.entity';
 import { ApiProperty } from '@nestjs/swagger';
