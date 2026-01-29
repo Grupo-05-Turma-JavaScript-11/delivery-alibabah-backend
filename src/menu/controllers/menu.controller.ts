@@ -2,8 +2,9 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPip
 import { MenuService } from "../services/menu.service";
 import { Menu } from "../entities/menu.entity";
 import { DeleteResult } from "typeorm";
+import { ApiTags } from "@nestjs/swagger";
 
-
+ApiTags("Menu")
 @Controller("/menu")
 export class MenuController{ 
     constructor(private readonly menuService: MenuService){}
