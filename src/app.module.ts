@@ -15,7 +15,7 @@ import { ProdService } from './data/services/prod.service';
     }),
     MenuModule,
     UsuarioModule,
-    CategoriasModule,
+    CategoriasModule
   ],
   controllers: [],
   providers: [],
