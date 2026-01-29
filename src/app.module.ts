@@ -19,6 +19,5 @@ import { AppController } from './app.controller';
   forwardRef(() => CategoriasModule),
   ],
   controllers: [AppController],
-  providers: [],
 })
 export class AppModule {}
