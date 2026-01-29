@@ -4,7 +4,7 @@ import { Menu } from '../../menu/entities/menu.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 // cria uma tabela 'tb_categorias' e mapeia cada instância da classe 'Categoria' para um registro dessa tabela
-@Entity('tb_categorias')
+@Entity({ name: 'tb_categorias' })
 export class Categoria {
 
     // atributos da classe (id, nome, descricao), que se tornam colunas da tabela 'tb_categorias'
