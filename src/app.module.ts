@@ -5,6 +5,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { ConfigModule } from '@nestjs/config';
 import { ProdService } from './data/services/prod.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { ProdService } from './data/services/prod.service';
   forwardRef(() => UsuarioModule),
   forwardRef(() => CategoriasModule),
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}
