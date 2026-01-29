@@ -13,15 +13,19 @@ export class Categoria {
     @ApiProperty()
     id: number;
 
-    @Column({ type: 'varchar', length: 100, nullable: false })    // coluna 'nome' da categoria, armazenando texto com limite de 100 caracteres, e não pode ser nulo
+    @IsNotEmpty()
+    @IsString()
+    @Column({ type: 'varchar', length: 100, nullable: false })
     @ApiProperty()
     nome: string;
 
-    @Column({ type: 'varchar', length: 255, nullable: false })   // coluna 'descricao' da categoria, armazenando texto com limite de 100 caracteres, e não pode ser nulo
+    @IsNotEmpty()
+    @IsString()
+    @Column({ type: 'varchar', length: 255, nullable: false })
     @ApiProperty()
     descricao: string;
 
     @OneToMany(() => Menu, (prato) => prato.categoria)
-    @ApiProperty()
+    @ApiProperty({ required: false })
     menu: Menu[];
 }
